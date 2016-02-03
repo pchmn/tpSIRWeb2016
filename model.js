@@ -15,7 +15,7 @@ function Forme(couleur, epaisseur) {
     this.epaisseur = epaisseur;
 };
 
-function Rectangle(couleur, epaisseur, largeur, hauteur) {
+function Rectangle(xInit, yInit, largeur, hauteur, epaisseur, couleur) {
     Forme.call(this, couleur, epaisseur);
     this.largeur = largeur;
     this.hauteur = hauteur;
@@ -40,7 +40,7 @@ function Rectangle(couleur, epaisseur, largeur, hauteur) {
 };
 Rectangle.prototype = new Forme();
 
-function Line(couleur, epaisseur, xInit, yInit, xFin, yFin) {
+function Line(xInit, yInit, xFin, yFin, epaisseur, couleur) {
     Forme.call(this.couleur, this.epaisseur);
     this.xDeb = xInit;
     this.yDeb = yInit;
@@ -48,29 +48,30 @@ function Line(couleur, epaisseur, xInit, yInit, xFin, yFin) {
     this.yFin = yFin;
 
 
-    function getXInit(){
+    this.getXInit = function(){
     	return this.xDeb;
-    }
-    function setXInit(newXDeb){
+    }.bind(this);
+
+    this.setXInit = function(newXDeb){
     	this.xDeb = newXDeb;
-    }
-    function getYDeb(){
+    }.bind(this);
+    this.getYDeb = function(){
     	return this.yDeb;
-    }
-    function setYInit(newYDeb){
+    }.bind(this);
+    this.setYInit = function(newYDeb){
     	this.yDeb = newYDeb;
-    }
-    function getXFin(){
+    }.bind(this);
+    this.getXFin = function(){
     	return this.xFin;
-    }
-    function setXFin(newXFin){
+    }.bind(this);
+   	this.setXFin = function(newXFin){
     	this.xFin = newXFin;
-    }
-    function getYFin(){
+    }.bind(this);
+    this.getYFin = function(){
     	return this.yFin;
-    }
-    function setYFin(newYFin){
+    }.bind(this);
+    this.setYFin = function(newYFin){
     	this.yFin = newYFin;
-    }
+    }.bind(this);
 };
 Line.prototype = new Forme();
