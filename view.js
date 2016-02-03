@@ -17,16 +17,15 @@ Forme.prototype.paint = function(ctx) {
 };
 
 Rectangle.prototype.paint = function(ctx) {
-    ctx.strokeStyle = this.couleur;
+    Forme.prototype.paint.call(this);
     ctx.rect(this.getInitX(), this.getInitY(), this.getFinalX(), this.getFinalY());
     ctx.stroke();
 };
 
 Line.prototype.paint = function(ctx) {
-	ctx.strokeStyle = this.couleur;
+	Forme.prototype.paint.call(this);
     ctx.beginPath();
     ctx.moveTo(this.getXInit(), this.getYDeb());
     ctx.lineTo(this.getXFin(), this.getYFin());
     ctx.stroke();
-
 };
