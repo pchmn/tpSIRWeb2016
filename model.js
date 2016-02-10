@@ -2,12 +2,16 @@
 // Implémenter ici les 4 classes du modèle.
 // N'oubliez pas l'héritage !
 
-function Drawing(formes) {
-    this.formes = formes;
+function Drawing() {
+    this.formes = [];
 
+    this.addForm = function(form){
+    	this.formes.push(form);
+    }.bind(this);
+    
     this.getForms = function() {
         return this.formes;
-    };
+    }.bind(this);
 };
 
 function Forme(couleur, epaisseur) {
@@ -36,7 +40,7 @@ function Rectangle(xInit, yInit, largeur, hauteur, epaisseur, couleur) {
 
     this.getFinalY = function() {
         return Math.abs(this.yOrigine + this.hauteur);
-    }
+    }.bind(this)
 };
 Rectangle.prototype = new Forme();
 

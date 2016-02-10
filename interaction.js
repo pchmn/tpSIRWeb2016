@@ -11,6 +11,7 @@ function DnD(canvas, interactor) {
 
 	// Developper les 3 fonctions gérant les événements
     this.pression = function(evt) {
+    	interactor.onInteractionStart(this);
         var coordonnees = getMousePosition(canvas, evt);
 
         this.press = true;
@@ -23,6 +24,7 @@ function DnD(canvas, interactor) {
 
     this.deplacement = function(evt) {
         if(this.press) {
+        	interactor.onInteractionUpdate(this);
             var coordonnees = getMousePosition(canvas, evt);
             console.log("X : " + coordonnees.x);
             console.log("Y : " + coordonnees.y);
@@ -30,6 +32,7 @@ function DnD(canvas, interactor) {
     }.bind(this);
 
     this.relachement = function(evt) {
+    	interactor.onInteractionEnd(this);
         var coordonnees = getMousePosition(canvas, evt);
 
         this.press = false;
