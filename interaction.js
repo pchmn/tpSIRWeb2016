@@ -11,12 +11,12 @@ function DnD(canvas, interactor) {
 
 	// Developper les 3 fonctions gérant les événements
     this.pression = function(evt) {
-    	interactor.onInteractionStart(this);
         var coordonnees = getMousePosition(canvas, evt);
 
         this.press = true;
         this.xInit = coordonnees.x;
         this.yInit = coordonnees.y;
+        interactor.onInteractionStart(this);
 
         console.log("X init : " + this.xInit)
         console.log("Y init : " + this.yInit)
@@ -24,20 +24,27 @@ function DnD(canvas, interactor) {
 
     this.deplacement = function(evt) {
         if(this.press) {
-        	interactor.onInteractionUpdate(this);
             var coordonnees = getMousePosition(canvas, evt);
-            console.log("X : " + coordonnees.x);
-            console.log("Y : " + coordonnees.y);
+
+            this.xFin = coordonnees.x;
+            this.yFin = coordonnees.y;
+            interactor.onInteractionUpdate(this);
+
+            console.log("X : " + this.xFin);
+            console.log("Y : " + this.yFin);
         }
     }.bind(this);
 
     this.relachement = function(evt) {
-    	interactor.onInteractionEnd(this);
-        var coordonnees = getMousePosition(canvas, evt);
-
         this.press = false;
-        this.xFin = coordonnees.x;
-        this.yFin = coordonnees.y;
+
+        // si xFin et yFin sont à 0, c'est qu'il n'y a pas
+        // eu de déplacement. Dans ce cas on ne crée pas de forme
+        if(this.xFin == 0 && this.yFin == 0) {
+            return;
+        }
+
+        interactor.onInteractionEnd();
 
         console.log("X fin : " + this.xFin)
         console.log("Y fin : " + this.yFin)
