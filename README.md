@@ -30,3 +30,6 @@ Le controlleur gère également les options choisies par l'utilisateur (couleur,
 
 * <b>view.js :</b><br>
   C'est la vue. Ce fichier permet de créer les formes grâce à des méthodes paint() propre à chaque classe du modèle.
+
+<br>
+###### Projet réalisé par Clément Goachet et Paul Chemin
